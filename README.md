@@ -1,142 +1,297 @@
-🎓 CampusOne – Smart Campus Complaint & Management System
+# 🎓 CampusONE – Smart Campus Management System
 
-> **Bridging the gap between students and administration with real-time tracking and seamless campus management.**
+> **A unified platform for students and administrators to manage complaints, campus events, mess services, notifications, and campus activities.**
 
-![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
 ---
 
 ## 📖 Overview
 
-**CampusOne** is a mobile-first smart campus application built using **React Native (Expo)** and **Firebase**. It simplifies complaint management, mess feedback, and campus analytics while ensuring security through a robust **Role-Based Access Control (RBAC)** system.
+**CampusONE** is a full-stack **MERN-based smart campus management platform** designed to connect students and campus administrators through a single web application.
 
-### 🌟 Key Highlights
-- **Real-time Sync:** Complaints and events update instantly across devices.
-- **Secure Access:** Distinct portals for Students and Admins (Wardens).
-- **Data-Driven:** Automated weekly analytics for mess quality and facility issues.
+The platform provides centralized management for campus complaints, mess feedback, events, notifications, user management, and administrative analytics.
+
+The system uses **role-based access control (RBAC)** to provide different capabilities to students and administrators.
 
 ---
 
-## 📸 App Screenshots
-
-### 📱 Student & User Experience
-| **Login & Authentication** | **Dashboard & Events** | **Profile & Settings** |
-|:---:|:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/95ec1c3e-5332-43f0-b0ea-8559880d1f48" width="200" /> | <img src="https://github.com/user-attachments/assets/71ac132f-b2a6-42c6-8423-2390990c5303" width="200" /> | <img src="https://github.com/user-attachments/assets/b6c50edb-46c5-4937-a8e2-5902c5077047" width="200" /> |
-| **Secure Entry** | **Real-time Campus Feed** | **User Management** |
-
-<br>
-
-### 🚨 Complaints & Mess Management
-| **Complaint Tracking** | **Event Details** | **Mess Feedback** |
-|:---:|:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/d1b34bc4-85ac-422a-885e-ed3b124cb08b" width="200" /> | <img src="https://github.com/user-attachments/assets/7c357350-1bb3-4412-869f-9683d22e29c8" width="200" /> | <img src="https://github.com/user-attachments/assets/692e23ad-7165-4418-825b-4c77716d8ed4" width="200" /> |
-| **Live Status Updates** | **Seamless Registration** | **Daily Meal Rating** |
-
-<br>
-
-### 📊 Admin & Analytics Dashboard
-| **Mess Committee** | **Admin vs User** | **Complaint Form** |
-|:---:|:---:|:---:|
-| <img src="https://github.com/user-attachments/assets/621bd501-d986-4451-a5ff-f1a24c7c9821" width="200" /> | <img src="https://github.com/user-attachments/assets/45e07530-9677-4c3e-896c-bf865f289361" width="200" /> | <img src="https://github.com/user-attachments/assets/703de9da-bcf3-45a1-8605-b386ab1d11a7" width="200" /> |
-| **Manage Issues** | **Weekly Statistics** | **App Configuration** |
----
-
-## 📱 Features
-
-### 🛡️ Role-Based Access Control (RBAC)
-- **Security:** Admin access is verified against a secure Firestore whitelist.
-- **Protection:** Prevents unauthorized role switching or data access.
+## ✨ Key Features
 
 ### 🎓 Student Portal
-- **📢 Raise Complaints:** Report maintenance issues with photo evidence.
-- **⏱️ Real-time Tracking:** See status changes (Pending → In Progress → Resolved).
-- **🍽️ Mess Feedback:** Rate meals on Taste, Hygiene, and Quantity.
-- **📅 Events:** View upcoming campus activities.
 
-### 👮 Admin / Warden Dashboard
-- **👀 Monitoring:** View all active complaints sorted by priority.
-- **✏️ Action:** Update status and resolve issues.
-- **📊 Analytics:**
-  - Resolution time tracking.
-  - Category-wise breakdown (Water, WiFi, Electricity, etc.).
-  - Weekly Mess feedback averages.
+- 🔐 Secure registration and JWT-based authentication
+- 📢 Submit and track campus complaints
+- ⏱️ Track complaint status from **Pending → In Progress → Resolved**
+- 🍽️ View mess menus and submit meal feedback
+- 📅 View upcoming campus events
+- 🔔 Receive campus notifications
+- 📊 View personal activity and dashboard statistics
+- 👤 Manage profile information
 
----
+### 🛡️ Admin Portal
 
-## 🛠️ Tech Stack
-
-- **Frontend:** React Native, Expo, Expo Router
-- **Backend:** Firebase (Firestore, Authentication)
-- **Media:** Cloudinary (Image Storage)
-- **State Management:** React Hooks + Firestore Realtime Listeners
-- **Styling:** Custom Theme System (Light / Dark Mode support)
+- 📋 View and manage campus complaints
+- 🚦 Update complaint status and priority
+- 👥 Manage registered users
+- 📅 Manage campus events
+- 🍽️ Manage and monitor mess-related information
+- 🔔 Manage campus notifications
+- 📊 View campus statistics and analytics
+- 🔎 Monitor complaints by category, priority, and status
 
 ---
 
-## 🚀 Getting Started
+## 🔐 Authentication & Authorization
 
-Follow these steps to set up the project locally.
+CampusONE uses **JWT-based authentication** with role-based authorization.
 
-### 1️⃣ Clone the Repository
-```
-git clone [https://github.com/your-username/CampusOne.git](https://github.com/your-username/CampusOne.git)
-cd CampusOne
-```
+### Roles
 
-2️⃣ Install Dependencies
-```
-npm install
-```
+**Student**
+- Access personal dashboard
+- Submit complaints
+- View personal complaints
+- Submit mess feedback
+- View events and notifications
 
-3️⃣ Configure Environment
-Create a .env file in the root directory and add your Firebase credentials:
+**Admin**
+- Manage complaints across the campus
+- Manage users
+- Manage events and notifications
+- Access administrative analytics
 
-Code snippet
-```
-EXPO_PUBLIC_FIREBASE_API_KEY=your_api_key
-EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-EXPO_PUBLIC_FIREBASE_PROJECT_ID=your_project_id
-EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-EXPO_PUBLIC_FIREBASE_APP_ID=your_app_id
-```
-4️⃣ Run the App
-```
-npx expo start
-```
-Scan the QR code using the Expo Go app on your Android/iOS device.
+Protected API routes use authentication middleware and role-based authorization to prevent unauthorized access.
 
+---
+
+## 🏗️ System Architecture
+
+```text
+┌──────────────────────────┐
+│        React Client      │
+│       Vite + Tailwind    │
+└────────────┬─────────────┘
+             │ REST API
+             ▼
+┌──────────────────────────┐
+│      Express Server      │
+│   Controllers + Routes   │
+│ Middleware + JWT Auth    │
+└────────────┬─────────────┘
+             │
+             ▼
+┌──────────────────────────┐
+│         MongoDB          │
+│       Mongoose ODM       │
+└──────────────────────────┘
+
+🛠️ Tech Stack
+Frontend
+React
+Vite
+Tailwind CSS
+shadcn/ui
+Radix UI
+Lucide React
+React Router
+TanStack Query
+React Hook Form
+Zod
+Sonner
+Backend
+Node.js
+Express.js
+MongoDB
+Mongoose
+JWT Authentication
+bcrypt
+Multer
+Cloudinary
+Development
+Git & GitHub
+ESLint
+Nodemon
+REST APIs
 📂 Project Structure
+CampusONE-MERN/
+│
+├── client/                         # React + Vite frontend
+│   ├── src/
+│   │   ├── components/             # Reusable UI components
+│   │   ├── pages/                  # Application pages
+│   │   ├── layouts/                # Dashboard layouts
+│   │   ├── hooks/                  # Custom React hooks
+│   │   ├── lib/                    # Utilities and API helpers
+│   │   ├── services/               # API services
+│   │   └── ...
+│   ├── package.json
+│   └── vite.config.js
+│
+├── server/                         # Express + MongoDB backend
+│   ├── src/
+│   │   ├── controllers/            # Business logic
+│   │   ├── models/                 # Mongoose models
+│   │   ├── routes/                 # API routes
+│   │   ├── middlewares/            # Auth & validation
+│   │   ├── utils/                  # Utility functions
+│   │   └── index.js                # Server entry point
+│   ├── package.json
+│   └── ...
+│
+├── .gitignore
+└── README.md
+🚀 Getting Started
+1. Clone the Repository
+git clone https://github.com/azinel/CampusONE-MERN-v2.git
+cd CampusONE-MERN-v2
+2. Install Dependencies
 
-```
-src/
-├── app/                  # Expo Router Screens
-│   ├── (tabs)/           # Tab Navigation (Dashboard, Complaints, Mess)
-│   ├── login.tsx         # Authentication Logic
-│   └── _layout.tsx       # Root Layout & Auth Guards
-├── components/           # Reusable UI Components (Cards, Buttons)
-├── utils/
-│   ├── firebase.js       # Firebase Config
-│   ├── theme.js          # Theme (Colors, Typography)
-│   └── auth/             # Auth Hooks & Context
-└── assets/               # Static Images & Icons
-```
-**🤝 Contributing**
+Install frontend dependencies:
 
-Contributions are welcome!
+cd client
+npm install
 
-1.Fork the repository.
+Install backend dependencies:
 
-2.Create a Feature Branch (git checkout -b feature/AmazingFeature).
+cd ../server
+npm install
+⚙️ Environment Variables
 
-3.Commit your changes (git commit -m "Add AmazingFeature
+Create a .env file inside the server/ directory.
 
-4.Push to the branch (git push origin feature/AmazingFeature).
+PORT=5001
 
-5.Open a Pull Request.
+MONGO_URI=mongodb://127.0.0.1:27017/campusone
 
-<div align="center"> <p>Built with ❤️ for the Smart Campus Initiative</p> </div>
+ACCESS_TOKEN_SECRET=your_access_token_secret
+REFRESH_TOKEN_SECRET=your_refresh_token_secret
+
+Never commit .env files or secret keys to GitHub.
+
+▶️ Running the Application
+Start Backend
+
+From the server/ directory:
+
+npm run dev
+
+The API will run on:
+
+http://localhost:5001
+
+Health check:
+
+http://localhost:5001/health
+Start Frontend
+
+From the client/ directory:
+
+npm run dev
+
+The Vite development server will provide the local frontend URL.
+
+🔌 Core API Modules
+
+CampusONE exposes REST APIs for the major campus operations.
+
+Module	Purpose
+🔐 Authentication	Registration, login, logout, current user
+📢 Complaints	Create, view, update and track complaints
+👥 Users	User and role management
+📅 Events	Campus event management
+🍽️ Mess	Menus, ratings and feedback
+🔔 Notifications	Campus notifications
+📊 Dashboard	Statistics and activity data
+🗃️ Database
+
+CampusONE uses MongoDB with Mongoose for data persistence.
+
+The main database is:
+
+campusone
+
+Example entities include:
+
+Users
+Complaints
+Events
+Notifications
+Posts
+Comments
+Mess Data
+🎨 UI & UX
+
+CampusONE provides a responsive web interface with:
+
+🌙 Dark / Light mode
+📱 Responsive layouts
+🎨 Consistent design system
+🧩 Reusable UI components
+🔔 Toast notifications
+📊 Dashboard analytics
+♿ Accessible form and interaction patterns
+⚡ Fast client-side data fetching with TanStack Query
+🔒 Security
+
+The application implements several security mechanisms:
+
+JWT-based authentication
+Password hashing with bcrypt
+Protected API routes
+Role-based authorization
+Request validation
+Environment-based secret configuration
+Restricted administrative operations
+Secure HTTP-only authentication patterns where applicable
+🧪 Development
+
+Run the frontend and backend separately during development:
+
+# Terminal 1
+cd server
+npm run dev
+
+# Terminal 2
+cd client
+npm run dev
+🤝 Contributing
+
+Contributions are welcome.
+
+Fork the repository
+Create a feature branch
+git checkout -b feature/AmazingFeature
+Commit your changes
+git commit -m "Add AmazingFeature"
+Push the branch
+git push origin feature/AmazingFeature
+Open a Pull Request
+📌 Project Status
+
+CampusONE is actively being developed as a full-stack campus management platform.
+
+Current modules include:
+
+✅ Authentication & RBAC
+✅ Student Dashboard
+✅ Admin Dashboard
+✅ Complaint Management
+✅ Mess Management
+✅ Events
+✅ Notifications
+✅ User Management
+✅ Dashboard Analytics
+<div align="center">
+🎓 CampusONE
+
+One platform. One campus. Connected.
+
+Built with ❤️ using the MERN stack.
+
+</div> ```
