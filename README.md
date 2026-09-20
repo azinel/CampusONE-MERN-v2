@@ -14,7 +14,14 @@
 ## 📖 Overview
 
 **CampusONE** is a full-stack **MERN-based smart campus management platform** designed to connect students and campus administrators through a single web application.
-
+<p align="center">
+  <a href="https://campusonev2.netlify.app/">
+    <img src="https://img.shields.io/badge/🚀%20Live%20Demo-CampusONE-2ea44f?style=for-the-badge" />
+  </a>
+  <a href="https://github.com/azinel/CampusONE-MERN-v2">
+    <img src="https://img.shields.io/badge/📂%20Source%20Code-GitHub-181717?style=for-the-badge&logo=github" />
+  </a>
+</p>
 The platform provides centralized management for campus complaints, mess feedback, events, notifications, user management, and administrative analytics.
 
 The system uses **role-based access control (RBAC)** to provide different capabilities to students and administrators.
