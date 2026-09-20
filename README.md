@@ -90,35 +90,49 @@ Protected API routes use authentication middleware and role-based authorization 
 │         MongoDB          │
 │       Mongoose ODM       │
 └──────────────────────────┘
+```
 
-🛠️ Tech Stack
-Frontend
-React
-Vite
-Tailwind CSS
-shadcn/ui
-Radix UI
-Lucide React
-React Router
-TanStack Query
-React Hook Form
-Zod
-Sonner
-Backend
-Node.js
-Express.js
-MongoDB
-Mongoose
-JWT Authentication
-bcrypt
-Multer
-Cloudinary
-Development
-Git & GitHub
-ESLint
-Nodemon
-REST APIs
-📂 Project Structure
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React
+- Vite
+- Tailwind CSS
+- shadcn/ui
+- Radix UI
+- Lucide React
+- React Router
+- TanStack Query
+- React Hook Form
+- Zod
+- Sonner
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- bcrypt
+- Multer
+- Cloudinary
+
+### Development
+
+- Git & GitHub
+- ESLint
+- Nodemon
+- REST APIs
+
+---
+
+## 📂 Project Structure
+
+```text
 CampusONE-MERN/
 │
 ├── client/                         # React + Vite frontend
@@ -146,78 +160,117 @@ CampusONE-MERN/
 │
 ├── .gitignore
 └── README.md
-🚀 Getting Started
-1. Clone the Repository
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/azinel/CampusONE-MERN-v2.git
 cd CampusONE-MERN-v2
-2. Install Dependencies
+```
+
+### 2. Install Dependencies
 
 Install frontend dependencies:
 
+```bash
 cd client
 npm install
+```
 
 Install backend dependencies:
 
+```bash
 cd ../server
 npm install
-⚙️ Environment Variables
+```
 
-Create a .env file inside the server/ directory.
+---
 
+## ⚙️ Environment Variables
+
+Create a `.env` file inside the `server/` directory.
+
+```env
 PORT=5001
 
 MONGO_URI=mongodb://127.0.0.1:27017/campusone
 
 ACCESS_TOKEN_SECRET=your_access_token_secret
 REFRESH_TOKEN_SECRET=your_refresh_token_secret
+```
 
-Never commit .env files or secret keys to GitHub.
+> **Note:** Never commit `.env` files or secret keys to GitHub.
 
-▶️ Running the Application
-Start Backend
+---
 
-From the server/ directory:
+## ▶️ Running the Application
 
+### Start Backend
+
+From the `server/` directory:
+
+```bash
 npm run dev
+```
 
 The API will run on:
 
+```text
 http://localhost:5001
+```
 
 Health check:
 
+```text
 http://localhost:5001/health
-Start Frontend
+```
 
-From the client/ directory:
+### Start Frontend
 
+From the `client/` directory:
+
+```bash
 npm run dev
+```
 
 The Vite development server will provide the local frontend URL.
 
-🔌 Core API Modules
+---
+
+## 🔌 Core API Modules
 
 CampusONE exposes REST APIs for the major campus operations.
 
-Module	Purpose
-🔐 Authentication	Registration, login, logout, current user
-📢 Complaints	Create, view, update and track complaints
-👥 Users	User and role management
-📅 Events	Campus event management
-🍽️ Mess	Menus, ratings and feedback
-🔔 Notifications	Campus notifications
-📊 Dashboard	Statistics and activity data
-🗃️ Database
+| Module | Purpose |
+|---|---|
+| 🔐 Authentication | Registration, login, logout, current user |
+| 📢 Complaints | Create, view, update and track complaints |
+| 👥 Users | User and role management |
+| 📅 Events | Campus event management |
+| 🍽️ Mess | Menus, ratings and feedback |
+| 🔔 Notifications | Campus notifications |
+| 📊 Dashboard | Statistics and activity data |
 
-CampusONE uses MongoDB with Mongoose for data persistence.
+---
+
+## 🗃️ Database
+
+CampusONE uses **MongoDB** with **Mongoose** for data persistence.
 
 The main database is:
 
+```text
 campusone
+```
 
 Example entities include:
 
+```text
 Users
 Complaints
 Events
@@ -225,73 +278,112 @@ Notifications
 Posts
 Comments
 Mess Data
-🎨 UI & UX
+```
+
+---
+
+## 🎨 UI & UX
 
 CampusONE provides a responsive web interface with:
 
-🌙 Dark / Light mode
-📱 Responsive layouts
-🎨 Consistent design system
-🧩 Reusable UI components
-🔔 Toast notifications
-📊 Dashboard analytics
-♿ Accessible form and interaction patterns
-⚡ Fast client-side data fetching with TanStack Query
-🔒 Security
+- 🌙 Dark / Light mode
+- 📱 Responsive layouts
+- 🎨 Consistent design system
+- 🧩 Reusable UI components
+- 🔔 Toast notifications
+- 📊 Dashboard analytics
+- ♿ Accessible form and interaction patterns
+- ⚡ Fast client-side data fetching with TanStack Query
+
+---
+
+## 🔒 Security
 
 The application implements several security mechanisms:
 
-JWT-based authentication
-Password hashing with bcrypt
-Protected API routes
-Role-based authorization
-Request validation
-Environment-based secret configuration
-Restricted administrative operations
-Secure HTTP-only authentication patterns where applicable
-🧪 Development
+- JWT-based authentication
+- Password hashing with bcrypt
+- Protected API routes
+- Role-based authorization
+- Request validation
+- Environment-based secret configuration
+- Restricted administrative operations
+- Secure HTTP-only authentication patterns where applicable
 
-Run the frontend and backend separately during development:
+---
 
-# Terminal 1
+## 🧪 Development
+
+Run the frontend and backend separately during development.
+
+**Terminal 1 — Backend**
+
+```bash
 cd server
 npm run dev
+```
 
-# Terminal 2
+**Terminal 2 — Frontend**
+
+```bash
 cd client
 npm run dev
-🤝 Contributing
+```
+
+---
+
+## 🤝 Contributing
 
 Contributions are welcome.
 
-Fork the repository
-Create a feature branch
+### 1. Fork the repository
+
+### 2. Create a feature branch
+
+```bash
 git checkout -b feature/AmazingFeature
-Commit your changes
+```
+
+### 3. Commit your changes
+
+```bash
 git commit -m "Add AmazingFeature"
-Push the branch
+```
+
+### 4. Push the branch
+
+```bash
 git push origin feature/AmazingFeature
-Open a Pull Request
-📌 Project Status
+```
+
+### 5. Open a Pull Request
+
+---
+
+## 📌 Project Status
 
 CampusONE is actively being developed as a full-stack campus management platform.
 
 Current modules include:
 
-✅ Authentication & RBAC
-✅ Student Dashboard
-✅ Admin Dashboard
-✅ Complaint Management
-✅ Mess Management
-✅ Events
-✅ Notifications
-✅ User Management
-✅ Dashboard Analytics
-<div align="center">
-🎓 CampusONE
+- ✅ Authentication & RBAC
+- ✅ Student Dashboard
+- ✅ Admin Dashboard
+- ✅ Complaint Management
+- ✅ Mess Management
+- ✅ Events
+- ✅ Notifications
+- ✅ User Management
+- ✅ Dashboard Analytics
 
-One platform. One campus. Connected.
+---
+
+<div align="center">
+
+## 🎓 CampusONE
+
+**One platform. One campus. Connected.**
 
 Built with ❤️ using the MERN stack.
 
-</div> ```
+</div>
