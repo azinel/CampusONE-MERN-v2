@@ -1,0 +1,22 @@
+/* Student dashboard — scoped dark page background only */
+html:not(.light) .student-dashboard-root {
+  --color-background: #000000;
+  background-color: #000000;
+  margin: -1.25rem -1rem;
+  padding: 1.25rem 1rem;
+  min-height: calc(100vh - 3.5rem);
+}
+
+@media (min-width: 640px) {
+  html:not(.light) .student-dashboard-root {
+    margin: -1.5rem -1.5rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  html:not(.light) .student-dashboard-root {
+    margin: -1.5rem -2rem;
+    padding: 1.5rem 2rem;
+  }
+}
