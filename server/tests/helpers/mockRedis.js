@@ -94,6 +94,13 @@ export class MockRedis {
     return "OK";
   }
 
+  async ping() {
+    if (this.status !== "ready") {
+      throw new Error("Redis connection offline");
+    }
+    return "PONG";
+  }
+
   disconnect() {
     this.status = "end";
   }

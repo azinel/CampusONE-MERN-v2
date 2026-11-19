@@ -9,7 +9,7 @@ import {
   apiRequest,
 } from "./helpers/setup.js";
 import { MockRedis } from "./helpers/mockRedis.js";
-import { setRedisClient, closeRedisConnection } from "../src/config/redis.js";
+import { setRedisClient, closeRedisConnection, verifyRedisConnection } from "../src/config/redis.js";
 import Complaint from "../src/models/Complaint.js";
 
 describe("Redis Caching and Invalidation", () => {
@@ -326,5 +326,17 @@ describe("Redis Caching and Invalidation", () => {
     });
     assert.equal(bobAttempt.status, 403);
     assert.equal(bobAttempt.body.message, "Forbidden");
+  });
+
+  it("should successfully verify Redis connection with PING check", async () => {
+    const isHealthy = await verifyRedisConnection(mockRedis);
+    assert.equal(isHealthy, true, "PING check should succeed when Redis client is ready");
+  });
+
+  it("should safely handle and log PING check failure when Redis is offline", async () => {
+    mockRedis.simulateFailure();
+    const isHealthy = await verifyRedisConnection(mockRedis);
+    assert.equal(isHealthy, false, "PING check should fail gracefully when Redis is offline");
+    mockRedis.restore();
   });
 });

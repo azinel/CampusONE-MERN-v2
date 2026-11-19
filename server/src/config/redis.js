@@ -20,33 +20,73 @@ export const createRedisClient = (
 
   client.on("connect", () => {
     isConnected = true;
-    console.log("Redis: connection established");
   });
 
-  client.on("ready", () => {
+  client.on("ready", async () => {
     isConnected = true;
-    console.log("Redis: ready to accept commands");
+    try {
+      if (typeof client.ping === "function") {
+        const pong = await client.ping();
+        if (process.env.NODE_ENV !== "test") {
+          console.log(`[Redis] PING successful (${pong}): Redis connection verified`);
+        }
+      }
+    } catch (pingErr) {
+      if (process.env.NODE_ENV !== "test") {
+        console.error(`[Redis] PING check failed after connection: ${pingErr.message}`);
+      }
+    }
   });
 
   client.on("close", () => {
     isConnected = false;
-    console.warn("Redis: connection closed");
+  });
+
+  client.on("end", () => {
+    isConnected = false;
   });
 
   client.on("error", (err) => {
     isConnected = false;
-    console.error(`Redis error: ${err.message}`);
+    if (process.env.NODE_ENV !== "test") {
+      console.error(`[Redis] Connection failure: ${err.message}`);
+    }
   });
 
   return client;
 };
 
+/**
+ * Safely executes a Redis PING connectivity check.
+ * Logs successful PING or failure and returns boolean indicating connectivity.
+ */
+export const verifyRedisConnection = async (client = redisClient) => {
+  if (!client || typeof client.ping !== "function") {
+    return false;
+  }
+  try {
+    const pong = await client.ping();
+    if (process.env.NODE_ENV !== "test") {
+      console.log(`[Redis] PING successful (${pong}): Redis connection verified`);
+    }
+    return true;
+  } catch (err) {
+    if (process.env.NODE_ENV !== "test") {
+      console.error(`[Redis] PING check failed: ${err.message}`);
+    }
+    return false;
+  }
+};
+
 export const getRedisClient = () => {
   if (!redisClient) {
     redisClient = createRedisClient();
-    // Attempt lazy connection in background without blocking API execution
-    redisClient.connect?.().catch?.(() => {
-      // Gracefully fail-open if Redis is not running
+    // Attempt lazy connection in background without blocking API execution or startup
+    redisClient.connect?.().catch?.((err) => {
+      // Gracefully fail-open if Redis is not running; error listener logs connection failures
+      if (process.env.NODE_ENV !== "test" && typeof redisClient?.listenerCount === "function" && redisClient.listenerCount("error") === 0) {
+        console.error(`[Redis] Connection failure: ${err.message}`);
+      }
     });
   }
   return redisClient;

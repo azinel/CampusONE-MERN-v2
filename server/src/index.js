@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import app from "./app.js";
+import { getRedisClient, closeRedisConnection } from "./config/redis.js";
 
 dotenv.config();
 
@@ -30,6 +31,9 @@ mongoose
   .then(() => {
     console.log("MongoDB connected");
 
+    // Initialize Redis in background without blocking API startup
+    getRedisClient();
+
     const server = app.listen(port, () => {
       console.log(`CampusONE API listening on http://localhost:${port}`);
     });
@@ -37,6 +41,7 @@ mongoose
     const shutdown = async (signal) => {
       console.log(`Received ${signal}. Shutting down API server gracefully...`);
       server.close(async () => {
+        await closeRedisConnection();
         await mongoose.disconnect();
         console.log("API server stopped cleanly.");
         process.exit(0);
