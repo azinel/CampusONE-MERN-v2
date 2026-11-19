@@ -20,25 +20,22 @@ export const createRedisClient = (
 
   client.on("connect", () => {
     isConnected = true;
+    console.log("Redis: connection established");
   });
 
   client.on("ready", () => {
     isConnected = true;
+    console.log("Redis: ready to accept commands");
   });
 
   client.on("close", () => {
     isConnected = false;
-  });
-
-  client.on("end", () => {
-    isConnected = false;
+    console.warn("Redis: connection closed");
   });
 
   client.on("error", (err) => {
     isConnected = false;
-    if (process.env.NODE_ENV !== "test") {
-      console.warn(`Redis notice: ${err.message}`);
-    }
+    console.error(`Redis error: ${err.message}`);
   });
 
   return client;
