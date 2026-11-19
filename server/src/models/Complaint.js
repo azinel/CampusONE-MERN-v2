@@ -103,4 +103,13 @@ const complaintSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Indexes based on actual Complaint queries
+complaintSchema.index({ student: 1, createdAt: -1 });
+complaintSchema.index({ status: 1, createdAt: -1 });
+complaintSchema.index({ category: 1 });
+complaintSchema.index({ priority: 1 });
+complaintSchema.index({ createdAt: -1 });
+complaintSchema.index({ updatedAt: -1 });
+
 export default mongoose.model("Complaint", complaintSchema);
+

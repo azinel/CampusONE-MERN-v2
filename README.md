@@ -1,27 +1,11 @@
 # 🎓 CampusONE – Smart Campus Management System
 
-> **A unified platform for students and administrators to manage complaints, campus events, mess services, notifications, and campus activities.**
+> **Bridging the gap between students and administration with real-time tracking and seamless campus management.**
 
-<p align="center">
-  <a href="https://campusonev2.netlify.app/">
-    <img src="https://img.shields.io/badge/🚀%20Live%20Demo-CampusONE-2ea44f?style=for-the-badge" />
-  </a>
-  <a href="https://github.com/azinel/CampusONE-MERN-v2">
-    <img src="https://img.shields.io/badge/📂%20Source%20Code-GitHub-181717?style=for-the-badge&logo=github" />
-  </a>
-  <img src="https://img.shields.io/github/actions/workflow/status/azinel/CampusONE-MERN-v2/ci.yml?branch=main&style=for-the-badge&label=CI" />
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
-  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
-  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" />
-  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
-  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
-  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
-  <img src="https://img.shields.io/badge/BullMQ-E53935?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
-</p>
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 ---
 

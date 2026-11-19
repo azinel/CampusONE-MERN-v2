@@ -1,21 +1,9 @@
-import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import postRoutes from "./routes/posts.js";
-import eventRoutes from "./routes/events.js";
-import notificationRoutes from "./routes/notifications.js";
-import dashboardRoutes from "./routes/dashboard.js";
-import commentRoutes from "./routes/comments.js";
-import authRoutes from "./routes/auth.js";
-import complaintRoutes from "./routes/complaints.js";
-import messRoutes from "./routes/mess.js";
-import userRoutes from "./routes/users.js";
-import { errorHandler } from "./middlewares/error.middleware.js";
+import app from "./app.js";
 
 dotenv.config();
 
@@ -35,37 +23,28 @@ for (const key of requiredEnv) {
   }
 }
 
-const app = express();
-const port = process.env.PORT || 5000;
-
-app.use(cors({ origin: true, credentials: true }));
-app.use(express.json());
-app.use(cookieParser());
-
-app.get("/health", (_req, res) => {
-  res.json({ ok: true, service: "campusone-api" });
-});
-
-app.use("/api/auth", authRoutes);
-app.use("/api/complaints", complaintRoutes);
-app.use("/api/mess", messRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/posts", postRoutes);
-app.use("/api/events", eventRoutes);
-app.use("/api/notifications", notificationRoutes);
-app.use("/api/dashboard", dashboardRoutes);
-app.use("/api/comments", commentRoutes);
-
-app.use(errorHandler);
+const port = process.env.PORT || 5001;
 
 mongoose
   .connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/campusone")
   .then(() => {
     console.log("MongoDB connected");
 
-    app.listen(port, () => {
+    const server = app.listen(port, () => {
       console.log(`CampusONE API listening on http://localhost:${port}`);
     });
+
+    const shutdown = async (signal) => {
+      console.log(`Received ${signal}. Shutting down API server gracefully...`);
+      server.close(async () => {
+        await mongoose.disconnect();
+        console.log("API server stopped cleanly.");
+        process.exit(0);
+      });
+    };
+
+    process.on("SIGINT", () => shutdown("SIGINT"));
+    process.on("SIGTERM", () => shutdown("SIGTERM"));
   })
   .catch((error) => {
     console.error("Mongo connection error", error);

@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    services:
+      mongodb:
+        image: mongo:7.0
+        ports:
+          - 27017:27017
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: |
+            client/package-lock.json
+            server/package-lock.json
+
+      - name: Install client dependencies
+        working-directory: client
+        run: npm ci
+
+      - name: Install server dependencies
+        working-directory: server
+        run: npm ci
+
+      - name: Run backend tests
+        working-directory: server
+        env:
+          NODE_ENV: test
+          TEST_MONGO_URI: mongodb://127.0.0.1:27017/campusone_test
+          ACCESS_TOKEN_SECRET: ci_test_access_secret_123456789
+          REFRESH_TOKEN_SECRET: ci_test_refresh_secret_123456789
+          REDIS_URL: redis://127.0.0.1:6379
+        run: npm test
+
+      - name: Run backend syntax/check validation
+        working-directory: server
+        run: npm run check
+
+      - name: Build frontend
+        working-directory: client
+        run: npm run build

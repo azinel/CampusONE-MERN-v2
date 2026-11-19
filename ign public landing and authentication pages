@@ -1,0 +1,85 @@
+warning: in the working copy of 'client/src/components/complaints/ComplaintListItem.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/complaints/ComplaintTimeline.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/complaints/ImageUpload.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/events/EventForm.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/layout/AppShell.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/layout/PageHeader.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/mess/StarRating.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/badge.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/badges.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/button.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/card.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/dialog.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/input.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/states.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/table.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/tabs.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/textarea.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/index.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/lib/constants.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/lib/design-system.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/admin/AdminComplaintDetailPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/admin/AdminComplaintsPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/admin/AdminDashboard.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/admin/AdminEventsPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/admin/AdminMessPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/admin/AnalyticsPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/admin/UsersPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/auth/ForgotPasswordPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/auth/LoginPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/auth/RegisterPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/public/ErrorPages.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/ComplaintDetailPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/CreateComplaintPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/EventDetailPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/MessFeedbackPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/NotificationsPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/ProfilePage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/StudentComplaintsPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/StudentDashboard.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/StudentDashboard.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/StudentDashboardComponents.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/StudentEventsPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/student/StudentMessPage.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/routes/index.jsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/src/index.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/src/middlewares/multer.middleware.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/src/utils/ApiError.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/src/utils/ApiResponse.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/src/utils/asyncHandler.js', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex 4924d43..55c00a1 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -39,6 +39,10 @@[m [mapp-example[m
+ [m
+ .env[m
+ .env.*[m
+[32m+[m[32m!.env.example[m
+[32m+[m[32m!**/.env.example[m
+ .metro-virtual/*[m
+ [m
+[31m-caches/*[m
+\ No newline at end of file[m
+[32m+[m[32mcaches/*[m
+[32m+[m[32mpublic/temp/[m
+[32m+[m[32m*.log[m
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 34631c5..9e89716 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -6,9 +6,19 @@[m
+ ![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)[m
+ ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)[m
+ ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)[m
+[32m+[m[32m[![CI](https://github.com/azinel/CampusONE-MERN-v2/actions/workflows/ci.yml/badge.svg)](https://github.com/azinel/CampusONE-MERN-v2/actions/workflows/ci.yml)[m
+ [m
+ ---[m
+ [m
+[32m+[m[32m## ⚙️ Continuous Integration (CI)[m
+[32m+[m
+[32m+[m[32mThis repository includes automated CI via GitHub Actions triggered on pushes and pull requests to `main`:[m
+[32m+[m[32m- **Dependencies**: Clean installation using `npm ci` for both `client` and `server` with dependency caching.[m
+[32m+[m[32m- **Backend Testing**: Automated test suite execution across authentication, complaint workflows, analytics aggregations, Redis caching, and asynchronous notification processing.[m
+[32m+[m[32m- **Syntax Validation**: Node.js static syntax checks across backend entry points.[m
+[32m+[m[32m- **Frontend Build**:
