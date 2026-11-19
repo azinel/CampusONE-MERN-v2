@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { GuestLayout, StudentLayout, AdminLayout } from '@/layouts/AppLayouts';
+import LandingPage from '@/pages/public/LandingPage';
 import LoginPage from '@/pages/auth/LoginPage';
 import RegisterPage from '@/pages/auth/RegisterPage';
 import ForgotPasswordPage from '@/pages/auth/ForgotPasswordPage';
@@ -20,9 +21,11 @@ import AdminComplaintDetailPage from '@/pages/admin/AdminComplaintDetailPage';
 import AnalyticsPage from '@/pages/admin/AnalyticsPage';
 import AdminMessPage from '@/pages/admin/AdminMessPage';
 import AdminEventsPage from '@/pages/admin/AdminEventsPage';
+import AdminNotificationsPage from '@/pages/admin/AdminNotificationsPage';
 import UsersPage from '@/pages/admin/UsersPage';
 
 export const router = createBrowserRouter([
+  { path: '/', element: <LandingPage /> },
   {
     element: <GuestLayout />,
     children: [
@@ -58,12 +61,12 @@ export const router = createBrowserRouter([
       { path: 'mess', element: <AdminMessPage /> },
       { path: 'events', element: <AdminEventsPage /> },
       { path: 'events/:id', element: <EventDetailPage basePath="/admin/events" /> },
+      { path: 'notifications', element: <AdminNotificationsPage /> },
       { path: 'users', element: <UsersPage /> },
       { path: 'settings', element: <AdminSettingsPage /> },
     ],
   },
   { path: '/unauthorized', element: <UnauthorizedPage /> },
   { path: '/404', element: <NotFoundPage /> },
-  { path: '/', element: <Navigate to="/login" replace /> },
   { path: '*', element: <NotFoundPage /> },
 ]);

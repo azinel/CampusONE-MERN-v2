@@ -1,22 +1,33 @@
-/* Student dashboard — scoped dark page background only */
-html:not(.light) .student-dashboard-root {
-  --color-background: #000000;
-  background-color: #000000;
-  margin: -1.25rem -1rem;
-  padding: 1.25rem 1rem;
-  min-height: calc(100vh - 3.5rem);
+/* CampusONE Student Dashboard Clean SaaS Styles */
+
+.student-dashboard-root {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
 }
 
-@media (min-width: 640px) {
-  html:not(.light) .student-dashboard-root {
-    margin: -1.5rem -1.5rem;
-    padding: 1.5rem;
-  }
+/* Stat card subtle interaction */
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-@media (min-width: 1024px) {
-  html:not(.light) .student-dashboard-root {
-    margin: -1.5rem -2rem;
-    padding: 1.5rem 2rem;
-  }
+.stat-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Interactive dashboard cards */
+.interactive-card {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.interactive-card:hover {
+  border-color: hsl(var(--color-border));
+  box-shadow: var(--shadow-xs);
+}
+
+/* Smooth custom scrollbars for mini cards */
+.student-scrollbar {
+  scrollbar-width: thin;
 }

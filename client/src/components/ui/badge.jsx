@@ -2,17 +2,17 @@ import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const badgeVariants = cva(
-  'inline-flex items-center rounded-md px-2.5 py-0.5 text-[0.8125rem] font-medium transition-colors',
+  'inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors',
   {
     variants: {
       variant: {
-        default: 'border-transparent bg-primary/15 text-primary',
-        secondary: 'border-transparent bg-secondary text-secondary-foreground',
-        outline: 'border border-border/70 text-foreground',
-        destructive: 'border-transparent bg-destructive/15 text-destructive',
-        success: 'border-transparent bg-accent-emerald-muted text-success',
-        warning: 'border-transparent bg-accent-amber-muted text-warning',
-        purple: 'border-transparent bg-accent-purple-muted text-accent-purple',
+        default: 'border border-primary/25 bg-primary/12 text-primary',
+        secondary: 'border border-border/70 bg-secondary text-secondary-foreground',
+        outline: 'border border-border text-muted-foreground hover:text-foreground',
+        destructive: 'border border-destructive/25 bg-destructive/10 text-destructive',
+        success: 'border border-emerald-500/25 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
+        warning: 'border border-amber-500/25 bg-amber-500/10 text-amber-600 dark:text-amber-400',
+        purple: 'border border-violet-500/25 bg-violet-500/10 text-violet-600 dark:text-violet-400',
       },
     },
     defaultVariants: { variant: 'default' },
