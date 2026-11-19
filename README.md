@@ -1,641 +1,446 @@
-# 🎓 CampusONE – Smart Campus Management System
+# 🎓 CampusONE — Smart Campus Management Platform
 
-> **Bridging the gap between students and administration with real-time tracking and seamless campus management.**
+A full-stack campus management platform designed to centralize student services, automate administrative workflows, and improve campus operations through scalable REST APIs, optimized database queries, asynchronous processing, and real-time application experiences.
 
-![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+**Live Demo:** https://campusonev2.netlify.app/  
+**Repository:** https://github.com/azinel/CampusONE-MERN-v2
 
 ---
 
-## 📖 Overview
+## Overview
 
-**CampusONE** is a full-stack **MERN-based smart campus management platform** designed to connect students and campus administrators through a single web application.
+CampusONE provides a unified platform for students and administrators to manage campus activities, report complaints, discover events, access mess information, and monitor institutional operations.
 
-The platform centralizes campus operations including:
+Beyond its user-facing functionality, the project focuses on building reliable backend systems with:
 
-- Complaint management
-- Mess services and feedback
-- Campus events
-- Notifications
-- User management
-- Administrative analytics
+- Efficient REST API design
+- Pagination, filtering, searching, and sorting
+- Request validation and centralized error handling
+- MongoDB indexing and aggregation pipelines
+- Redis caching and cache invalidation
+- Asynchronous notification processing using BullMQ
+- Automated testing and CI/CD pipelines
 
-The system uses **JWT authentication** and **role-based access control (RBAC)** to provide separate capabilities for students and administrators.
+The goal was to build more than a CRUD application by applying practical software engineering principles to a real-world campus management problem.
 
-Beyond basic CRUD functionality, the backend includes **pagination, filtering, search, sorting, validation, MongoDB indexing, aggregation pipelines, Redis caching, asynchronous job processing, automated testing, and CI/CD**.
+## Key Engineering Highlights
 
-<p align="center">
-  <a href="https://campusonev2.netlify.app/">
-    <strong>🚀 Visit Live Demo</strong>
-  </a>
-</p>
-
----
-
-## ✨ Key Features
-
-### 🎓 Student Portal
-
-- 🔐 Secure registration and JWT-based authentication
-- 📢 Submit and track campus complaints
-- ⏱️ Track complaint status from **Pending → In Progress → Resolved**
-- 🔎 Search, filter, sort and paginate complaint data
-- 🍽️ View mess menus and submit meal feedback
-- 📅 View upcoming campus events
-- 🔔 Receive campus notifications
-- 📊 View personal activity and dashboard statistics
-- 👤 Manage profile information
-
-### 🛡️ Admin Portal
-
-- 📋 View and manage campus complaints
-- 🚦 Update complaint status, priority and resolution
-- 🔎 Filter, search, sort and paginate complaints
-- 👥 Manage registered users
-- 📅 Manage campus events
-- 🍽️ Manage and monitor mess-related information
-- 🔔 Manage campus notifications
-- 📊 Access aggregation-based complaint analytics
-- 📈 View complaint trends and category/priority/status breakdowns
+| Engineering Area | Implementation |
+|---|---|
+| API Design | RESTful APIs with consistent response structures |
+| Query Optimization | Pagination, filtering, search, sorting, MongoDB indexes |
+| Validation | Centralized request validation and ObjectId validation |
+| Error Handling | Centralized error middleware and standardized API errors |
+| Analytics | MongoDB aggregation pipelines using `$match`, `$group`, `$facet`, `$project` and more |
+| Caching | Redis caching with TTL, scoped cache keys and invalidation |
+| Async Processing | BullMQ notification queues with retries and exponential backoff |
+| Reliability | Idempotent notification creation and graceful failure handling |
+| Testing | Node.js native test runner, assertions and mocked dependencies |
+| CI/CD | GitHub Actions with automated backend tests and frontend builds |
+| Deployment | Netlify, Render, MongoDB Atlas, Upstash Redis and Cloudinary |
 
 ---
 
-## 🔐 Authentication & Authorization
+## Features
 
-CampusONE uses **JWT-based authentication** with role-based authorization.
+### 1. Authentication & Authorization
+- User registration and login.
+- JWT-based authentication.
+- Role-based access control for students and administrators.
+- Protected routes and authorization middleware.
+- Persistent authenticated application sessions.
 
-### Roles
+### 2. Complaint Management System
+- Students can submit and track campus complaints.
+- Complaint categorization and priority management.
+- Complaint status updates and resolution tracking.
+- Image attachments through Cloudinary.
+- Administrative complaint assignment and monitoring.
+- Complaint timelines and activity tracking.
 
-**Student**
+### 3. Advanced REST API Querying
 
-- Access personal dashboard
-- Submit complaints
-- View own complaints
-- Submit mess feedback
-- View events and notifications
+Implemented reusable querying capabilities for complaint endpoints:
 
-**Admin**
+- **Pagination:** Page-based pagination with configurable limits and a maximum limit of 100.
+- **Filtering:** Filter by status, priority, category, hostel, room number and assigned administrator.
+- **Search:** Search complaint titles and descriptions.
+- **Sorting:** Whitelisted sorting fields with deterministic ordering.
+- **Validation:** Validate query parameters, request bodies and MongoDB ObjectIds.
+- **Access Control:** Restrict sensitive filters to authorized administrators.
 
-- Manage campus complaints
-- Manage users
-- Manage events and notifications
-- Update complaint status and priority
-- Access administrative analytics
+These improvements make API endpoints more efficient and predictable as datasets grow.
 
-Protected API routes use authentication middleware and role-based authorization to prevent unauthorized access.
+### 4. MongoDB Indexing & Query Optimization
+
+Added indexes to support frequently executed queries:
+
+- Student complaints ordered by creation date.
+- Complaints grouped by status and creation date.
+- Category and priority filtering.
+- Creation and update timestamp sorting.
+
+Indexes reduce unnecessary collection scans and improve query performance for common access patterns.
+
+### 5. Administrative Analytics Dashboard
+
+Implemented an analytics endpoint using MongoDB aggregation pipelines.
+
+**Aggregation techniques used:**
+- `$match` for filtering records.
+- `$facet` for parallel analytics computations.
+- `$group` for statistical aggregation.
+- `$sort` for ranking and ordering.
+- `$project` for response shaping.
+- `$filter` and `$cond` for conditional calculations.
+- `$limit` for top-category results.
+
+**Analytics include:**
+- Total complaints and overview metrics.
+- Status and priority distributions.
+- Category-wise complaint breakdown.
+- Top complaint categories.
+- Monthly complaint trends.
+- Hostel-wise statistics.
+- Average resolution time using actual resolution timestamps.
+
+### 6. Redis Caching
+
+Integrated Redis using `ioredis` to reduce repeated database queries.
+
+**Implementation details:**
+- Cache frequently requested complaint lists.
+- Cache complaint details.
+- Cache administrative analytics.
+- Different TTLs for different data types.
+- User-scoped cache keys to prevent cross-user data leakage.
+- Normalized query parameters for deterministic cache keys.
+- Cache invalidation after complaint mutations.
+- Pattern-based invalidation for related cached data.
+- Fail-open behavior when Redis is unavailable.
+- Non-blocking connection initialization and Redis PING verification.
+
+| Cached Data | TTL |
+|---|---:|
+| Complaint lists | 60 seconds |
+| Complaint details | 120 seconds |
+| Admin analytics | 300 seconds |
+
+### 7. Asynchronous Notifications with BullMQ
+
+Implemented background notification processing using BullMQ and Redis.
+
+Instead of performing notification operations directly within request-response execution, complaint-related notification jobs are dispatched to a queue.
+
+**Engineering details:**
+- Dedicated notification queue.
+- Separate worker process.
+- Asynchronous job processing.
+- Three retry attempts.
+- Exponential backoff starting at 1 second.
+- Deterministic job IDs.
+- Idempotent notification creation to prevent duplicates.
+- Graceful queue failure handling.
+
+This separates notification processing from the main API request lifecycle.
+
+### 8. Centralized Error Handling
+
+Implemented centralized error handling for consistent API behavior.
+
+Handles:
+- Custom API errors.
+- Mongoose validation errors.
+- Invalid MongoDB ObjectIds.
+- Duplicate key errors.
+- JWT errors.
+- Multer upload errors.
+- Async route rejections.
+
+Also includes request-level validation and cleanup of temporary uploaded files when requests fail.
+
+### 9. Testing
+
+Built an automated backend test suite using Node.js native testing tools.
+
+**Testing stack:**
+- `node:test`
+- `node:assert/strict`
+- Mock Redis client
+- Mock notification queue
+- Test setup helpers
+
+Test coverage includes:
+
+- Authentication.
+- Complaint APIs.
+- Administrative analytics.
+- Redis caching.
+- Error handling.
+- Notification queue behavior.
+
+**Latest reported result: 56 tests passed, 0 failures.**
+
+### 10. CI/CD with GitHub Actions
+
+Implemented an automated GitHub Actions workflow.
+
+Pipeline includes:
+
+1. Trigger on pushes and pull requests to `main`.
+2. Set up Node.js 22.
+3. Install dependencies using `npm ci`.
+4. Start a MongoDB service container.
+5. Execute backend tests.
+6. Run backend syntax checks.
+7. Build the React frontend.
+8. Report pipeline success or failure.
+
+This helps detect regressions before changes are merged into the main branch.
 
 ---
 
-## 🏗️ System Architecture
+## Tech Stack
+
+| Layer | Technologies |
+|---|---|
+| Frontend | React, Vite, Tailwind CSS |
+| UI Components | Radix UI, shadcn/ui, Lucide |
+| State & Data Fetching | TanStack Query |
+| Forms & Validation | React Hook Form, Zod |
+| Backend | Node.js, Express.js |
+| Database | MongoDB, Mongoose |
+| Caching | Redis, ioredis |
+| Background Jobs | BullMQ |
+| Authentication | JWT |
+| Image Storage | Cloudinary |
+| Testing | Node.js Test Runner, Assert |
+| CI/CD | GitHub Actions |
+| Frontend Hosting | Netlify |
+| Backend Hosting | Render |
+
+## System Architecture
 
 ```text
-                         ┌──────────────────────┐
-                         │      React Client    │
-                         │   Vite + Tailwind    │
-                         └──────────┬───────────┘
-                                    │
-                              REST API / JWT
-                                    │
-                                    ▼
-                         ┌──────────────────────┐
-                         │    Express Server    │
-                         │ Controllers / Routes │
-                         │ Middleware / Auth    │
-                         └───────┬───────┬──────┘
-                                 │       │
-                    ┌────────────┘       └─────────────┐
-                    ▼                                  ▼
-          ┌──────────────────┐                ┌──────────────────┐
-          │     MongoDB      │                │      Redis       │
-          │    Mongoose      │                │ Cache / BullMQ   │
-          └──────────────────┘                └────────┬─────────┘
-                                                       │
-                                                       ▼
-                                              ┌──────────────────┐
-                                              │ Notification     │
-                                              │ Worker           │
-                                              │     BullMQ       │
-                                              └──────────────────┘
+                    CampusONE Client
+                     React + Vite
+                          |
+                          | HTTPS / REST APIs
+                          v
+                  Express.js API Server
+                          |
+             +------------+------------+
+             |            |            |
+             v            v            v
+          MongoDB       Redis       Cloudinary
+          Atlas         Cache       Image Storage
+             |            |
+             |            |
+             |       BullMQ Queue
+             |            |
+             |            v
+             |     Notification Worker
+             |            |
+             +------------+
 ```
 
----
+The API server handles synchronous application requests, while BullMQ workers process background jobs independently.
 
-## 🧠 Backend Engineering
-
-The backend goes beyond basic CRUD operations and implements several production-oriented patterns.
-
-### 📄 Pagination, Filtering & Search
-
-The Complaint API supports:
-
-- Pagination with configurable limits
-- Status filtering
-- Priority filtering
-- Category filtering
-- Hostel and room filtering
-- Student/admin scoped queries
-- Case-insensitive search
-- Whitelisted sorting fields
-- Deterministic pagination ordering
-
-Example:
-
-```http
-GET /api/complaints?page=2&limit=20&status=Pending&priority=High&sort=-createdAt
-```
-
-### 🗂️ MongoDB Indexing
-
-Complaint query patterns are supported through targeted MongoDB indexes, including indexes for:
-
-- Student + creation date
-- Status + creation date
-- Category
-- Priority
-- Creation date
-- Update date
-
-This reduces unnecessary collection scans for common queries.
-
-### 📊 MongoDB Aggregation Analytics
-
-Administrative analytics use MongoDB aggregation pipelines instead of loading all complaints into Node.js.
-
-The analytics API provides:
-
-- Total complaints
-- Resolved / unresolved counts
-- Status breakdown
-- Priority breakdown
-- Category breakdown
-- Top complaint categories
-- Complaint trends over time
-- Hostel breakdown
-- Resolution-time statistics
-
-The implementation uses aggregation stages such as:
+## Project Structure
 
 ```text
-$match
-$facet
-$group
-$sort
-$project
-$filter
-$cond
-$limit
-```
-
-### ⚡ Redis Caching
-
-Redis is used selectively for expensive and read-heavy operations.
-
-Cached operations include:
-
-- Complaint analytics
-- Complaint listing queries
-- Complaint details
-
-Cache characteristics:
-
-- Deterministic cache keys
-- Student/admin scoped keys
-- TTL-based expiration
-- Mutation-based invalidation
-- Fail-open behavior when Redis is unavailable
-
-Redis is treated as a performance layer rather than a source of truth.
-
-### 🔄 Asynchronous Notifications
-
-Complaint-related notifications are processed asynchronously using **BullMQ + Redis**.
-
-```text
-Complaint Mutation
-       │
-       ▼
-Express API
-       │
-       ├──────────────► HTTP Response
-       │
-       ▼
-Notification Queue
-       │
-       ▼
-BullMQ Worker
-       │
-       ▼
-In-App Notification
-```
-
-The notification system includes:
-
-- Dedicated background worker
-- Retry handling
-- Exponential backoff
-- Deterministic job IDs
-- Database-level idempotency
-- Fail-open queue behavior
-
-This keeps notification processing out of the critical API request path.
-
----
-
-## 🧪 Testing
-
-CampusONE uses the **Node.js native test runner** instead of requiring a third-party testing framework.
-
-```bash
-npm test
-```
-
-The test suite covers:
-
-- Authentication
-- JWT-protected routes
-- Complaint CRUD
-- Pagination
-- Filtering
-- Search
-- Sorting
-- Authorization boundaries
-- Validation
-- Error handling
-- Analytics aggregation
-- Redis caching
-- Cache invalidation
-- Redis failure fallback
-- Notification queueing
-- Worker processing
-- Retry behavior
-- Notification idempotency
-
-Current test status:
-
-```text
-54 tests passed
-0 tests failed
-```
-
----
-
-## 🔄 Continuous Integration
-
-CampusONE uses **GitHub Actions** for automated CI.
-
-Every push and pull request to `main` runs:
-
-```text
-1. Checkout repository
-2. Set up Node.js 22
-3. Start MongoDB service
-4. Install client dependencies
-5. Install server dependencies
-6. Run backend tests
-7. Run backend syntax checks
-8. Build frontend
-```
-
-The workflow fails automatically if any validation step fails.
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-
-- React
-- Vite
-- Tailwind CSS
-- shadcn/ui
-- Radix UI
-- Lucide React
-- React Router
-- TanStack Query
-- React Hook Form
-- Zod
-- Sonner
-
-### Backend
-
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT
-- bcrypt
-- Multer
-- Redis
-- ioredis
-- BullMQ
-
-### Development & DevOps
-
-- Git
-- GitHub
-- GitHub Actions
-- ESLint
-- Nodemon
-- Node.js Native Test Runner
-- REST APIs
-
----
-
-## 📂 Project Structure
-
-```text
-CampusONE-MERN/
+CampusONE-MERN-v2/
 │
-├── .github/
-│   └── workflows/
-│       └── ci.yml                  # GitHub Actions CI
+├── client/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── hooks/
+│       ├── layouts/
+│       ├── lib/
+│       ├── pages/
+│       ├── routes/
+│       └── services/
 │
-├── client/                         # React + Vite frontend
+├── server/
 │   ├── src/
-│   │   ├── components/             # Reusable UI components
-│   │   ├── pages/                  # Application pages
-│   │   ├── layouts/                # Dashboard layouts
-│   │   ├── hooks/                  # Custom React hooks
-│   │   ├── lib/                    # Utilities and API helpers
-│   │   ├── services/               # API services
-│   │   └── ...
-│   ├── package.json
-│   └── vite.config.js
-│
-├── server/                         # Express + MongoDB backend
-│   ├── src/
-│   │   ├── config/                 # Database / Redis / queue config
-│   │   ├── controllers/            # Business logic
-│   │   ├── models/                 # Mongoose models
-│   │   ├── routes/                 # API routes
-│   │   ├── middlewares/            # Auth & validation
-│   │   ├── queues/                 # BullMQ queues
-│   │   ├── workers/                # Background workers
-│   │   ├── utils/                  # Utility functions
-│   │   ├── app.js                  # Express application
-│   │   ├── index.js                # API server entry point
-│   │   └── worker.js               # Worker entry point
+│   │   ├── config/
+│   │   ├── constants/
+│   │   ├── controllers/
+│   │   ├── middlewares/
+│   │   ├── models/
+│   │   ├── queues/
+│   │   ├── routes/
+│   │   ├── utils/
+│   │   ├── workers/
+│   │   ├── app.js
+│   │   ├── index.js
+│   │   └── worker.js
 │   │
-│   ├── tests/                      # Backend test suites
-│   ├── package.json
-│   └── ...
+│   ├── tests/
+│   ├── seed-demo.js
+│   └── package.json
 │
-├── .gitignore
-└── README.md
+└── .github/
+    └── workflows/
+        └── ci.yml
 ```
 
----
+## Local Setup
 
-## 🚀 Getting Started
+### Prerequisites
 
-### 1. Clone the Repository
+- Node.js 22
+- npm
+- MongoDB
+- Redis
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/azinel/CampusONE-MERN-v2.git
 cd CampusONE-MERN-v2
 ```
 
-### 2. Install Dependencies
-
-Install frontend dependencies:
+### 2. Configure the backend
 
 ```bash
-cd client
+cd server
 npm install
 ```
 
-Install backend dependencies:
+Create `server/.env` using `server/.env.example`.
 
-```bash
-cd ../server
-npm install
-```
-
----
-
-## ⚙️ Environment Variables
-
-Create a `.env` file inside the `server/` directory.
+Configure:
 
 ```env
+NODE_ENV=development
 PORT=5001
 
-MONGO_URI=mongodb://127.0.0.1:27017/campusone
+MONGO_URI=your_mongodb_connection_string
 
 ACCESS_TOKEN_SECRET=your_access_token_secret
 REFRESH_TOKEN_SECRET=your_refresh_token_secret
 
 REDIS_URL=redis://127.0.0.1:6379
+
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+CLIENT_URL=http://localhost:5173
 ```
 
-> **Note:** Never commit `.env` files or secret keys to GitHub.
-
-For reference, see `server/.env.example`.
-
----
-
-## ▶️ Running the Application
-
-### Start Backend API
-
-From the `server/` directory:
+### 3. Start the backend
 
 ```bash
 npm run dev
 ```
 
-The API runs on:
+### 4. Start the notification worker
 
-```text
-http://localhost:5001
-```
-
-Health check:
-
-```text
-http://localhost:5001/health
-```
-
-### Start Frontend
-
-From the `client/` directory:
-
-```bash
-npm run dev
-```
-
-### Start Notification Worker
-
-The BullMQ notification worker runs independently:
+In another terminal:
 
 ```bash
 cd server
 npm run worker
 ```
 
-For full local functionality, ensure **MongoDB and Redis** are running.
+The worker requires a reachable Redis instance.
 
----
-
-## 🔌 Core API Modules
-
-| Module | Purpose |
-|---|---|
-| 🔐 Authentication | Registration, login, logout and current user |
-| 📢 Complaints | Create, view, search, filter, sort and manage complaints |
-| 👥 Users | User and role management |
-| 📅 Events | Campus event management |
-| 🍽️ Mess | Menus, ratings and feedback |
-| 🔔 Notifications | In-app campus notifications |
-| 📊 Dashboard | Statistics and activity data |
-| 📈 Analytics | Aggregation-based administrative analytics |
-
----
-
-## 🗃️ Database
-
-CampusONE uses **MongoDB** with **Mongoose** for data persistence.
-
-The main database is:
-
-```text
-campusone
-```
-
-Core entities include:
-
-```text
-Users
-Complaints
-Events
-Notifications
-Posts
-Comments
-Mess Data
-```
-
----
-
-## 🎨 UI & UX
-
-CampusONE provides a responsive web interface with:
-
-- 🌙 Dark / Light mode
-- 📱 Responsive layouts
-- 🎨 Consistent design system
-- 🧩 Reusable UI components
-- 🔔 Toast notifications
-- 📊 Dashboard analytics
-- ♿ Accessible form and interaction patterns
-- ⚡ Fast client-side data fetching with TanStack Query
-
----
-
-## 🔒 Security
-
-The application implements:
-
-- JWT-based authentication
-- Password hashing with bcrypt
-- Protected API routes
-- Role-based authorization
-- Request validation
-- ObjectId validation
-- Environment-based secret configuration
-- Student data access boundaries
-- Admin-only analytics and management operations
-- Centralized error handling
-
----
-
-## 🧪 Development
-
-Run the frontend, API server and notification worker separately.
-
-**Terminal 1 — Backend**
-
-```bash
-cd server
-npm run dev
-```
-
-**Terminal 2 — Frontend**
+### 5. Configure the frontend
 
 ```bash
 cd client
+npm install
+```
+
+Create `client/.env`:
+
+```env
+VITE_API_URL=http://localhost:5001/api
+```
+
+### 6. Start the frontend
+
+```bash
 npm run dev
 ```
 
-**Terminal 3 — Notification Worker**
+Frontend: `http://localhost:5173`
 
-```bash
-cd server
-npm run worker
-```
+Backend: `http://localhost:5001`
 
 ---
 
-## 🤝 Contributing
+## Running Tests
 
-Contributions are welcome.
-
-### 1. Fork the repository
-
-### 2. Create a feature branch
+From the repository root:
 
 ```bash
-git checkout -b feature/AmazingFeature
+npm --prefix server test
 ```
 
-### 3. Commit your changes
+Run backend syntax checks:
 
 ```bash
-git commit -m "Add AmazingFeature"
+npm --prefix server run check
 ```
 
-### 4. Push the branch
+Build the frontend:
 
 ```bash
-git push origin feature/AmazingFeature
+cd client
+npm run build
 ```
 
-### 5. Open a Pull Request
+## Deployment
+
+| Service | Platform |
+|---|---|
+| Frontend | Netlify |
+| Backend API | Render |
+| Database | MongoDB Atlas |
+| Redis | Upstash |
+| Image Storage | Cloudinary |
+
+The API and notification worker are separate processes. The worker requires a continuously running execution environment and a reachable Redis instance.
+
+Configure production environment variables through the hosting provider rather than committing credentials to Git.
 
 ---
 
-## 📌 Project Status
+## Engineering Decisions & Trade-offs
 
-CampusONE is an actively developed full-stack campus management platform.
+Some of the engineering decisions in CampusONE were made to improve reliability and maintainability:
 
-### Current Capabilities
+- **Pagination over unbounded queries:** Limits response sizes and database work.
+- **Indexes over repeated collection scans:** Supports frequently used filtering and sorting patterns.
+- **Redis caching over repeated aggregation queries:** Reduces database load for frequently requested analytics.
+- **Cache invalidation after mutations:** Keeps cached data from remaining stale beyond its TTL.
+- **Asynchronous notification processing:** Keeps notification work outside the main request lifecycle.
+- **Idempotent notification creation:** Helps prevent duplicate notifications during job retries.
+- **Centralized error handling:** Makes error responses consistent and easier to maintain.
+- **Automated tests and CI:** Helps detect regressions before deployment.
 
-- ✅ Authentication & RBAC
-- ✅ Student Dashboard
-- ✅ Admin Dashboard
-- ✅ Complaint Management
-- ✅ Pagination, Filtering, Search & Sorting
-- ✅ Request Validation
-- ✅ MongoDB Indexing
-- ✅ Centralized Error Handling
-- ✅ MongoDB Aggregation Analytics
-- ✅ Redis Caching
-- ✅ Cache Invalidation
-- ✅ BullMQ Asynchronous Notifications
-- ✅ Retry & Idempotency
-- ✅ Automated Backend Testing
-- ✅ GitHub Actions CI
-- ✅ Frontend Production Build
+## Future Improvements
+
+- Transactional outbox pattern for reliable database-to-queue event delivery.
+- Route-level frontend code splitting and bundle optimization.
+- Persistent backend profile updates.
+- Expanded integration and load testing.
+- Observability through structured logs and performance metrics.
+- More granular cache performance monitoring.
 
 ---
 
-<div align="center">
+## Author
 
-## 🎓 CampusONE
+**Aditya Kumar**  
+Computer Science & Engineering Student
 
-**One platform. One campus. Connected.**
+GitHub: https://github.com/azinel
 
-Built with ❤️ using the MERN stack.
+---
 
-</div>
+*CampusONE is an engineering-focused full-stack project demonstrating practical application development, backend optimization, asynchronous processing, database design, automated testing, and deployment.*
